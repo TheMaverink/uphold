@@ -1,13 +1,23 @@
+import './styles.css';
+
 import React from 'react';
 
-import Input from 'components/Input';
+import InputAmount from 'components/InputAmount';
 import CurrencyDropdown from 'components/CurrencyDropdown';
 import ConversionsDisplay from 'components/ConversionsDisplay';
 
-const InputsWrapper = () => {
-  return <div></div>;
-};
+import {getCurrencies} from 'utils'
 
 export default function CurrencyConverterPage() {
-  return <InputsWrapper />;
+
+  const currencies = getCurrencies()
+
+  return (
+    <main className="currency-converter-page">
+      <div className="inputs-wrapper">
+        <InputAmount />
+        <CurrencyDropdown currencies={currencies}/>
+      </div>
+    </main>
+  );
 }
