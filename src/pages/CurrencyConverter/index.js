@@ -3,6 +3,7 @@ import SDK from '@uphold/uphold-sdk-javascript';
 
 import React, { useState } from 'react';
 
+import Header from 'components/Header';
 import InputAmount from 'components/InputAmount';
 import CurrencyDropdown from 'components/CurrencyDropdown';
 import ConversionsDisplay from 'components/ConversionsDisplay';
@@ -11,8 +12,8 @@ import { getCurrencies } from 'utils';
 
 const upholdSDK = new SDK({
   baseUrl: 'http://api-sandbox.uphold.com',
-  clientId: 'foo',
-  clientSecret: 'bar',
+  clientId: 'public-client',
+  clientSecret: 'public-secret',
 });
 
 const pairs = await upholdSDK.getTicker('USD');
@@ -25,6 +26,7 @@ export default function CurrencyConverterPage() {
 
   return (
     <main className="currency-converter-page">
+      <Header/>
       <div className="inputs-wrapper">
         <InputAmount />
         <CurrencyDropdown currencies={currencies} />
