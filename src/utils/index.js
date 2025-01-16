@@ -20,10 +20,3 @@ export const getCurrencies = () => {
 
   return currencies;
 };
-
-export const getUpholdSDK = () =>
-  new SDK({
-    baseUrl: process.env.REACT_APP_UPHOLD_BASE_URL,
-    clientId: process.env.REACT_APP_UPHOLD_CLIENT_ID,
-    clientSecret: process.env.REACT_APP_UPHOLD_SECRET_ID,
-  });
