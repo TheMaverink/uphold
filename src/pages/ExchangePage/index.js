@@ -1,33 +1,24 @@
 import './styles.css';
-import SDK from '@uphold/uphold-sdk-javascript';
 
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
+
+import ExchangeContext from 'context/ExchangeContext';
 
 import Header from 'components/Header';
 import InputAmount from 'components/InputAmount';
 import CurrencyDropdown from 'components/CurrencyDropdown';
 import ConversionsDisplay from 'components/ConversionsDisplay';
 
-import { getCurrencies } from 'utils';
+export default function ExchangePage() {
+  //Review this, think in react 19 can be simplified
+  const { state, dispatch } = useContext(ExchangeContext) || {};
 
-const DEFAULT_CURRENCY = 'USD';
+  console.log('state');
+  console.log(state);
 
-const upholdSDK = new SDK({
-  baseUrl: 'http://api-sandbox.uphold.com',
-  clientId: 'public-client',
-  clientSecret: 'public-secret',
-});
-
-const pairs = await upholdSDK.getTicker(DEFAULT_CURRENCY);
-
-console.log('pairs');
-console.log(pairs);
-
-export default function CurrencyConverterPage() {
-  const currencies = getCurrencies();
+  const { rates, currentCurrency } = state || {};
 
   const [currentAmount, setCurrentAmount] = useState(0);
-  const [currentCurrency, setCurrentCurrency] = useState(DEFAULT_CURRENCY);
 
   return (
     <main className="currency-converter-page">
@@ -38,8 +29,9 @@ export default function CurrencyConverterPage() {
           <InputAmount value={currentAmount} setValue={setCurrentAmount} />
           <CurrencyDropdown
             value={currentCurrency}
-            currencies={currencies}
-            onChange={setCurrentCurrency}
+            onChange={(currency) =>
+              dispatch({ type: 'SET_CURRENCY', payload: currency })
+            }
           />
         </div>
       </div>

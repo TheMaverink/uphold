@@ -3,15 +3,21 @@ input {
   width: 100%;
   padding-left: 1.25rem;
   padding-right: 10rem;
-  font-size: 1rem;
+  font-size: 2.75rem;
   border-radius: 0.5rem;
-  background-color: var(--uphold-light);
+  background-color: transparent;
   color: var(--uphold-gray-dark);
   border: none;
   transition:
     background-color 0.2s ease-in-out,
     border 0.2s ease-in-out,
     box-shadow 0.4s ease-in-out;
+}
+
+input::placeholder {
+  color: var(--uphold-gray-light);
+  font-weight: normal;
+  opacity: 0.7;
 }
 
 input:focus {

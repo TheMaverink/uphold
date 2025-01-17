@@ -23,7 +23,10 @@
       align-items: center;
       padding: 3rem;
       max-width: 600px;
-      border: 1px solid grey;
+      background-color: var(--uphold-light);
+      height: 80px;
+      width: 100%;
+     
     }
   }
 }
