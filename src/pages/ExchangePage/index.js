@@ -13,9 +13,6 @@ export default function ExchangePage() {
   //Review this, think in react 19 can be simplified
   const { state, dispatch } = useContext(ExchangeContext) || {};
 
-  console.log('state');
-  console.log(state);
-
   const { rates, currentCurrency } = state || {};
 
   const [currentAmount, setCurrentAmount] = useState(0);
