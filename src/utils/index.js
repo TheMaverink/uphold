@@ -1,5 +1,3 @@
-import SDK from '@uphold/uphold-sdk-javascript';
-
 export const getCurrencies = () => {
   const currencies = [
     { label: 'US Dollar', symbol: 'USD', default: true },
@@ -19,4 +17,19 @@ export const getCurrencies = () => {
   ];
 
   return currencies;
+};
+
+export const validateNumberInput = (value) => {
+  let sanitizedValue = value.replace(/[^0-9.]/g, '');
+
+  if ((sanitizedValue.match(/\./g) || []).length > 1) {
+    sanitizedValue = sanitizedValue.slice(0, -1);
+  }
+
+  if (sanitizedValue.includes('.')) {
+    const [integerPart, decimalPart] = sanitizedValue.split('.');
+    sanitizedValue = `${integerPart}.${decimalPart.slice(0, 2)}`;
+  }
+
+  return sanitizedValue;
 };
