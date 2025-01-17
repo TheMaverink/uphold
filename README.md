@@ -1,70 +1,56 @@
-# Getting Started with Create React App
+![Uphold Logo](public/assets/images/logo.svg)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Uphold Currency Converter
 
-## Available Scripts
+## Introduction
+I really enjoyed working on this assessment! I wasn’t entirely sure which libraries I should use, so I aimed for a minimal approach, avoiding unnecessary dependencies while still ensuring all requirements were met.
 
-In the project directory, you can run:
+## ✅ Task Completion Checklist
 
-### `npm start`
+- [x] **TC01**: The user input amount should be USD by default.
+- [x] **TC02**: Should be able to change between currencies.
+- [x] **TC03**: Should update the values for every currency on user interaction using a debounce mechanism.
+- [x] **TC04**: Should have all the values cached upon the first request.
+- [x] **TC05**: Should make a new API call in the background, re-populating the cached value when changing between currencies.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## ✅ Technical Requirements
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- [x] **MUST** use React.
+- [x] **MUST** use ES6.
+- [x] **MUST** list at least 10 different currencies.
+- [x] **MUST** use the Uphold Javascript SDK.
+- [x] **MAY** have proper linting tools.
+- [x] **MAY** use the Uphold design system.
+- [x] **MAY** handle CORS without having to rely on the browser extension.
+- [x] **MAY** list all available currencies dynamically.
+- [x] **MAY** implement unit tests.
+- [x] **MAY** implement E2E tests.
 
-### `npm test`
+## 🛠 Setup Instructions
+1. Clone the repository:
+   ```sh
+   git clone https://github.com/your-repo/uphold-currency-converter.git
+   cd uphold-currency-converter
+   ```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+2. Install dependencies:
+   ```sh
+   npm install
+   ```
 
-### `npm run build`
+3. Start the development server:
+   ```sh
+   npm start
+   ```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+4. Run tests:
+   ```sh
+   npm test
+   npx cypress open
+   ```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+---
 
-### `npm run eject`
+Hope you like my solution! 🚀
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
