@@ -28,6 +28,12 @@
       height: 80px;
       width: 100%;
 
+      @media (max-width: 480px) {
+ 
+        height: 60px;
+        padding: 1rem;
+      }
+
      
     }
   }

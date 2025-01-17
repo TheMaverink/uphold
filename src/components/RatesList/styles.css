@@ -19,6 +19,9 @@
       color: var(--uphold-gray-dark);
       font-weight: 500;
       font-size: 1.5rem;
+      @media (max-width: 480px) {
+        font-size: 1.2rem;
+      }
     }
 
     .rates-list-item-currency {
@@ -37,6 +40,11 @@
         font-size: 16px;
         font-weight: bold;
         color: var(--uphold-gray-dark);
+
+        @media (max-width: 480px) {
+          font-size: 1.2rem;
+        }
+
       }
     }
   }
