@@ -7,13 +7,16 @@ import ExchangeContext from 'context/ExchangeContext';
 import Header from 'components/Header';
 import InputAmount from 'components/InputAmount';
 import CurrencyDropdown from 'components/CurrencyDropdown';
-import ConversionsDisplay from 'components/ConversionsDisplay';
+import RatesList from 'components/RatesList';
 
 export default function ExchangePage() {
   //Review this, think in react 19 can be simplified
   const { state, dispatch } = useContext(ExchangeContext) || {};
 
   const { rates, currentCurrency } = state || {};
+
+  console.log('rates')
+  console.log(rates)
 
   const [currentAmount, setCurrentAmount] = useState(0);
 
@@ -31,6 +34,8 @@ export default function ExchangePage() {
             }
           />
         </div>
+
+        <RatesList/>
       </div>
     </main>
   );

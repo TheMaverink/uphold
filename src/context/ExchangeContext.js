@@ -1,4 +1,4 @@
-import React, { createContext, useReducer, useEffect } from 'react';
+import React, { createContext, useReducer, useEffect, useRef } from 'react';
 import SDK from '@uphold/uphold-sdk-javascript';
 
 const upholdSDK = new SDK({
@@ -14,12 +14,11 @@ const ExchangeContext = createContext(null);
 const exchangeReducer = (state, action) => {
   switch (action.type) {
     case 'SET_RATES':
-      localStorage.setItem('exchangeRates', JSON.stringify(action.payload));
-      return { ...state, rates: action.payload };
+      return {
+        ...state,
+        rates: { ...state.rates, [action.currency]: action.payload },
+      };
     case 'SET_CURRENCY':
-      console.log('action.payload')
-      console.log(action.payload)
-      localStorage.setItem('currentCurrency', action.payload);
       return { ...state, currentCurrency: action.payload };
     default:
       return state;
@@ -27,25 +26,70 @@ const exchangeReducer = (state, action) => {
 };
 
 export function ExchangeRatesProvider({ children }) {
+  const isFetching = useRef(false);
+
   const initialState = {
-    rates: JSON.parse(localStorage.getItem('exchangeRates')) || {},
-    currentCurrency: localStorage.getItem('currentCurrency') || DEFAULT_CURRENCY,
+    rates: {},
+    currentCurrency: DEFAULT_CURRENCY,
   };
 
   const [state, dispatch] = useReducer(exchangeReducer, initialState);
 
   useEffect(() => {
     async function fetchRates() {
-      try {
-        const data = await upholdSDK.getTicker(DEFAULT_CURRENCY);
+      if (isFetching.current) return;
+      isFetching.current = true;
 
-        dispatch({ type: 'SET_RATES', payload: data });
+      try {
+        const selectedCurrency = state.currentCurrency || DEFAULT_CURRENCY;
+
+        if (state.rates[selectedCurrency]) {
+          console.log('Using cached rates for:', selectedCurrency);
+          return;
+        }
+
+        console.log('Fetching exchange rates for:', selectedCurrency);
+        const data = await upholdSDK.getTicker(selectedCurrency);
+
+        dispatch({
+          type: 'SET_RATES',
+          currency: selectedCurrency,
+          payload: data,
+        });
       } catch (error) {
         console.error('Error fetching exchange rates:', error);
+      } finally {
+        isFetching.current = false;
       }
     }
 
     fetchRates();
+  }, [state.currentCurrency]);
+
+  useEffect(() => {
+    async function updateRates() {
+      try {
+        const selectedCurrency = state.currentCurrency || DEFAULT_CURRENCY;
+
+        console.log(
+          'Updating exchange rates in background for:',
+          selectedCurrency
+        );
+        const data = await upholdSDK.getTicker(selectedCurrency);
+
+        dispatch({
+          type: 'SET_RATES',
+          currency: selectedCurrency,
+          payload: data,
+        });
+      } catch (error) {
+        console.error('Error updating exchange rates:', error);
+      }
+    }
+
+    if (state.rates[state.currentCurrency]) {
+      updateRates();
+    }
   }, [state.currentCurrency]);
 
   return (
@@ -54,6 +98,5 @@ export function ExchangeRatesProvider({ children }) {
     </ExchangeContext.Provider>
   );
 }
-
 
 export default ExchangeContext;
