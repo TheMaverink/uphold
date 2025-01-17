@@ -1,6 +1,6 @@
-import './styles.css';
+import "./styles.css";
 
-import RatesListItem from './RatesListItem';
+import RatesListItem from "./RatesListItem";
 
 const RatesList = ({ rates, currentAmount }) => {
   if (!rates) {

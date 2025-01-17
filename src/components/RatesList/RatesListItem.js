@@ -1,7 +1,7 @@
-import React from 'react';
+import React from "react";
 
 export default function RatesListItem({ rate, amount, ticker }) {
-  const amountConverted = (amount * rate).toFixed(6);
+  const amountConverted = (amount / rate).toFixed(6);
   return (
     <div className="rates-list-item">
       <span className="rates-list-item-amount">{amountConverted}</span>

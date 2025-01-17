@@ -4,28 +4,28 @@ import React, {
   useEffect,
   useRef,
   useMemo,
-} from 'react';
-import SDK from '@uphold/uphold-sdk-javascript';
-import { getCurrencies, calculateMidpointRate } from 'utils';
+} from "react";
+import SDK from "@uphold/uphold-sdk-javascript";
+import { getCurrencies, calculateMidpointRate } from "utils";
 
 const upholdSDK = new SDK({
-  baseUrl: 'http://api-sandbox.uphold.com',
-  clientId: 'public-client',
-  clientSecret: 'public-secret',
+  baseUrl: "http://api-sandbox.uphold.com",
+  clientId: "public-client",
+  clientSecret: "public-secret",
 });
 
-const DEFAULT_CURRENCY = 'USD';
+const DEFAULT_CURRENCY = "USD";
 
 const ExchangeContext = createContext(null);
 
 const exchangeReducer = (state, action) => {
   switch (action.type) {
-    case 'SET_RATES':
+    case "SET_RATES":
       return {
         ...state,
         rates: { ...state.rates, [action.currency]: action.payload },
       };
-    case 'SET_CURRENCY':
+    case "SET_CURRENCY":
       return { ...state, currentCurrency: action.payload };
     default:
       return state;
@@ -51,20 +51,20 @@ export function ExchangeRatesProvider({ children }) {
         const selectedCurrency = state.currentCurrency || DEFAULT_CURRENCY;
 
         if (state.rates[selectedCurrency]) {
-          console.log('Using cached rates for:', selectedCurrency);
+          console.log("Using cached rates for:", selectedCurrency);
           return;
         }
 
-        console.log('Fetching exchange rates for:', selectedCurrency);
+        console.log("Fetching exchange rates for:", selectedCurrency);
         const data = await upholdSDK.getTicker(selectedCurrency);
 
         dispatch({
-          type: 'SET_RATES',
+          type: "SET_RATES",
           currency: selectedCurrency,
           payload: data,
         });
       } catch (error) {
-        console.error('Error fetching exchange rates:', error);
+        console.error("Error fetching exchange rates:", error);
       } finally {
         isFetching.current = false;
       }
@@ -79,18 +79,18 @@ export function ExchangeRatesProvider({ children }) {
         const selectedCurrency = state.currentCurrency || DEFAULT_CURRENCY;
 
         console.log(
-          'Updating exchange rates in background for:',
-          selectedCurrency
+          "Updating exchange rates in background for:",
+          selectedCurrency,
         );
         const data = await upholdSDK.getTicker(selectedCurrency);
 
         dispatch({
-          type: 'SET_RATES',
+          type: "SET_RATES",
           currency: selectedCurrency,
           payload: data,
         });
       } catch (error) {
-        console.error('Error updating exchange rates:', error);
+        console.error("Error updating exchange rates:", error);
       }
     }
 
@@ -106,7 +106,7 @@ export function ExchangeRatesProvider({ children }) {
     const currenciesSymbols = currencies.map((currency) => currency.symbol);
 
     const filteredRates = state.rates[state.currentCurrency].filter((rate) => {
-      const pairSymbol = rate.pair.replace(state.currentCurrency, '');
+      const pairSymbol = rate.pair.replace(state.currentCurrency, "");
 
       const { currency: pairCurrency } = rate;
 
@@ -119,7 +119,7 @@ export function ExchangeRatesProvider({ children }) {
     });
 
     const normalizedRates = filteredRates.map((rate) => {
-      const pairSymbol = rate.pair.replace(state.currentCurrency, '');
+      const pairSymbol = rate.pair.replace(state.currentCurrency, "");
 
       return {
         rate: calculateMidpointRate(rate.ask, rate.bid),

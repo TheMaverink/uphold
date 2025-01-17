@@ -1,7 +1,7 @@
-import './styles.css';
-import React, { useEffect, useState } from 'react';
+import "./styles.css";
+import React, { useEffect, useState } from "react";
 
-import { validateNumberInput, formatNumber } from 'utils';
+import { validateNumberInput, formatNumber } from "utils";
 
 const DEBOUNCE_TIME = 300;
 
@@ -10,7 +10,7 @@ const InputAmount = ({ value, setValue }) => {
 
   useEffect(() => {
     const handler = setTimeout(() => {
-      setValue(inputValue.replace(/,/g, ''));
+      setValue(inputValue.replace(/,/g, ""));
     }, DEBOUNCE_TIME);
 
     return () => clearTimeout(handler);
@@ -20,7 +20,7 @@ const InputAmount = ({ value, setValue }) => {
     let sanitizedTextValue = validateNumberInput(event.target.value);
 
     if (sanitizedTextValue) {
-      sanitizedTextValue = sanitizedTextValue.replace(/^0+(?!(\.|$))/, '');
+      sanitizedTextValue = sanitizedTextValue.replace(/^0+(?!(\.|$))/, "");
     }
 
     setInputValue(formatNumber(sanitizedTextValue));

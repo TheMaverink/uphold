@@ -1,13 +1,13 @@
-import './styles.css';
+import "./styles.css";
 
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext } from "react";
 
-import ExchangeContext from 'context/ExchangeContext';
+import ExchangeContext from "context/ExchangeContext";
 
-import Header from 'components/Header';
-import InputAmount from 'components/InputAmount';
-import CurrencyDropdown from 'components/CurrencyDropdown';
-import RatesList from 'components/RatesList';
+import Header from "components/Header";
+import InputAmount from "components/InputAmount";
+import CurrencyDropdown from "components/CurrencyDropdown";
+import RatesList from "components/RatesList";
 
 export default function ExchangePage() {
   //Review this, think in react 19 can be simplified
@@ -26,12 +26,12 @@ export default function ExchangePage() {
           <CurrencyDropdown
             value={currentCurrency}
             onChange={(currency) =>
-              dispatch({ type: 'SET_CURRENCY', payload: currency })
+              dispatch({ type: "SET_CURRENCY", payload: currency })
             }
           />
         </div>
 
-        <RatesList rates={calculatedRates} currentAmount={currentAmount}/>
+        <RatesList rates={calculatedRates} currentAmount={currentAmount} />
       </div>
     </main>
   );
