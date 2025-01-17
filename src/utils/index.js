@@ -11,12 +11,8 @@ export const getCurrencies = () => {
     { label: 'New Zealand Dollar', symbol: 'NZD' },
     { label: 'Indian Rupee', symbol: 'INR' },
     { label: 'Brazilian Real', symbol: 'BRL' },
-    { label: 'South African Rand', symbol: 'ZAR' },
-    { label: 'Russian Ruble', symbol: 'RUB' },
     { label: 'Singapore Dollar', symbol: 'SGD' },
     { label: 'Mexican Peso', symbol: 'MXN' },
-    { label: 'South Korean Won', symbol: 'KRW' },
-    { label: 'Turkish Lira', symbol: 'TRY' },
     { label: 'United Arab Emirates Dirham', symbol: 'AED' }
 ];
 
@@ -39,3 +35,14 @@ export const validateNumberInput = (value) => {
 };
 
 export const calculateMidpointRate = (ask, bid) => (parseFloat(ask) + parseFloat(bid)) / 2;
+
+
+export const formatNumber = (value) => {
+  if (!value) return ''; 
+
+  const [integerPart, decimalPart] = value.split('.');
+
+  const formattedInteger = Number(integerPart).toLocaleString('en-US'); 
+
+  return decimalPart !== undefined ? `${formattedInteger}.${decimalPart}` : formattedInteger;
+};

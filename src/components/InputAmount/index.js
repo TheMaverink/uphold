@@ -1,26 +1,29 @@
 import './styles.css';
 import React, { useEffect, useState } from 'react';
 
-import { validateNumberInput } from 'utils';
+import { validateNumberInput, formatNumber } from 'utils';
 
-const DELAY = 300;
+const DEBOUNCE_TIME = 300;
 
 const InputAmount = ({ value, setValue }) => {
-  const [inputValue, setInputValue] = useState(value);
+  const [inputValue, setInputValue] = useState(formatNumber(value));
 
   useEffect(() => {
     const handler = setTimeout(() => {
-      setValue(inputValue);
-    }, DELAY);
+      setValue(inputValue.replace(/,/g, ''));
+    }, DEBOUNCE_TIME);
 
     return () => clearTimeout(handler);
   }, [inputValue, setValue]);
 
   const handleTextInputChange = (event) => {
-    const sanitizedTextValue = validateNumberInput(event.target.value);
+    let sanitizedTextValue = validateNumberInput(event.target.value);
+
     if (sanitizedTextValue) {
-      setInputValue(sanitizedTextValue);
+      sanitizedTextValue = sanitizedTextValue.replace(/^0+(?!(\.|$))/, '');
     }
+
+    setInputValue(formatNumber(sanitizedTextValue));
   };
 
   return (
@@ -29,6 +32,7 @@ const InputAmount = ({ value, setValue }) => {
       className="input-amount-number"
       value={inputValue}
       onChange={handleTextInputChange}
+      placeholder="0.00"
     />
   );
 };
