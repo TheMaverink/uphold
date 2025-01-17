@@ -30,7 +30,7 @@ I really enjoyed working on this assessment! I wasn’t entirely sure which libr
 1. Clone the repository:
    ```sh
    git clone https://github.com/your-repo/uphold-currency-converter.git
-   cd uphold-currency-converter
+   cd uphold
    ```
 
 2. Install dependencies:
