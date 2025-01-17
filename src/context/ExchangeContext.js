@@ -18,7 +18,12 @@ const DEFAULT_CURRENCY = "USD";
 
 const ExchangeContext = createContext(null);
 
-const exchangeReducer = (state, action) => {
+export const initialState = {
+  rates: {},
+  currentCurrency: DEFAULT_CURRENCY,
+};
+
+export const exchangeReducer = (state, action) => {
   switch (action.type) {
     case "SET_RATES":
       return {
@@ -34,11 +39,6 @@ const exchangeReducer = (state, action) => {
 
 export function ExchangeRatesProvider({ children }) {
   const isFetching = useRef(false);
-
-  const initialState = {
-    rates: {},
-    currentCurrency: DEFAULT_CURRENCY,
-  };
 
   const [state, dispatch] = useReducer(exchangeReducer, initialState);
 
