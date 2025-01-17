@@ -1,7 +1,34 @@
 import './styles.css';
 
-import React from "react";
+import RatesListItem from './RatesListItem';
 
-export default function RatesList() {
-  return <div className="rates-list">index</div>;
-}
+const RatesList = ({ rates, currentAmount }) => {
+  if (!rates) {
+    return (
+      <p className="rates-list-error">
+        Unfortunately, no exchange rates were found for this currency.
+      </p>
+    );
+  }
+
+  if (!currentAmount) {
+    return (
+      <p className="rates-list-error">Enter an amount to check the rates.</p>
+    );
+  }
+
+  return (
+    <div className="rates-list">
+      {rates.map(({ rate, pairSymbol }) => (
+        <RatesListItem
+          key={`rate-${pairSymbol}`}
+          rate={rate}
+          amount={currentAmount}
+          ticker={pairSymbol}
+        />
+      ))}
+    </div>
+  );
+};
+
+export default RatesList;

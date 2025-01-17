@@ -1,4 +1,6 @@
 header {
+  margin-top: 4rem;
+  margin-bottom: 2rem;
   .header-title {
     font-size: 3rem;
   }
@@ -6,6 +8,6 @@ header {
   .header-description {
     color: var(--uphold-gray-light);
     font-weight: 400;
-    font-size: 1.35rem;
+    font-size: 1.5rem;
   }
 }

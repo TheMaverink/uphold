@@ -1,3 +1,43 @@
-.rates-list{
-  
+.rates-list-error {
+  color: var(--uphold-gray-light);
+  font-weight: 400;
+  font-size: 1rem;
+}
+
+.rates-list {
+  width: 100%;
+
+  .rates-list-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    flex: 1;
+    padding: 0.8rem 3.6rem;
+
+    .rates-list-item-amount {
+      color: var(--uphold-gray-dark);
+      font-weight: 500;
+      font-size: 1.5rem;
+    }
+
+    .rates-list-item-currency {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      img {
+        width: 24px;
+        height: 24px;
+        border-radius: 50%;
+      }
+
+      span {
+        padding: 10px 15px;
+        gap: 8px;
+        font-size: 16px;
+        font-weight: bold;
+        color: var(--uphold-gray-dark);
+      }
+    }
+  }
 }

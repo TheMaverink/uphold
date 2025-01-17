@@ -31,7 +31,7 @@ export default function ExchangePage() {
           />
         </div>
 
-        <RatesList rates={calculatedRates}/>
+        <RatesList rates={calculatedRates} currentAmount={currentAmount}/>
       </div>
     </main>
   );
