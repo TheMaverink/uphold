@@ -2,14 +2,13 @@ import './styles.css';
 
 import React from 'react';
 
-const InputAmount = ({ value, onValueChange }) => {
+const InputAmount = ({ value, setValue }) => {
   return (
     <input
-      type="number"
+      type="text"
       className="input-amount-number"
       value={value}
-      onChange={(e) => onValueChange(e.target.value)}
-      placeholder="Enter amount"
+      onChange={(e) => setValue(e.target.value)}
     />
   );
 };

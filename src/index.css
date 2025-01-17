@@ -1,19 +1,8 @@
 :root {
-  --uphold-default-font: 'Proxima Nova', -apple-system, BlinkMacSystemFont,
-    'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans',
-    'Droid Sans', 'Helvetica Neue', sans-serif;
-
   --uphold-light: #f5f9fc;
   --uphold-gray-light: #96a4b2;
   --uphold-gray-dark: #586472;
   --uphold-dark: #091135;
-}
-
-@font-face {
-  font-family: var(--uphold-default-font);
-  src: url('/assets/fonts/proxima-nova.otf') format('opentype');
-  font-weight: normal;
-  font-style: normal;
 }
 
 *,
@@ -25,15 +14,13 @@
 body {
   margin: 0;
   padding: 0;
-  font-family: var(--uphold-default-font);
   color: var(--uphold-dark);
   background-color: var(--uphold-light);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-}
-
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
+    'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans',
+    'Helvetica Neue', sans-serif;
 }
 
 .App {

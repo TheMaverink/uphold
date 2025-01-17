@@ -1,8 +1,62 @@
 .currency-dropdown {
-    padding: 8px;
-    font-size: 16px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    background-color: #fff;
-    cursor: pointer;
-  }
+  position: relative;
+  display: inline-block;
+  width: 140px;
+  background: white;
+  border-radius: 10px;
+  cursor: pointer;
+  font-family: Arial, sans-serif;
+  user-select: none;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.currency-selected {
+  display: flex;
+  align-items: center;
+  padding: 10px 15px;
+  gap: 8px;
+  font-size: 16px;
+  font-weight: bold;
+  color: #091135;
+  background-color: white;
+  border-radius: 10px;
+}
+
+.currency-icon {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+}
+
+.dropdown-arrow {
+  margin-left: auto;
+  font-size: 12px;
+}
+
+.currency-list {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  background: white;
+  border-radius: 25px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  list-style: none;
+  padding: 0;
+  margin: 5px 0 0;
+  overflow: hidden;
+}
+
+.currency-list li {
+  display: flex;
+  align-items: center;
+  padding: 10px 15px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background 0.2s;
+  gap: 8px;
+}
+
+.currency-list li:hover {
+  background: #f5f9fc;
+}

@@ -1,13 +1,11 @@
-header{
+header {
+  .header-title {
+    font-size: 3rem;
+  }
 
-}
-
-.header-title{
-
-
-}
-
-.header-description{
-
-    
+  .header-description {
+    color: var(--uphold-gray-light);
+    font-weight: 400;
+    font-size: 1.35rem;
+  }
 }
