@@ -1,5 +1,12 @@
-import React, { createContext, useReducer, useEffect, useRef } from 'react';
+import React, {
+  createContext,
+  useReducer,
+  useEffect,
+  useRef,
+  useMemo,
+} from 'react';
 import SDK from '@uphold/uphold-sdk-javascript';
+import { getCurrencies, calculateMidpointRate } from 'utils';
 
 const upholdSDK = new SDK({
   baseUrl: 'http://api-sandbox.uphold.com',
@@ -92,8 +99,45 @@ export function ExchangeRatesProvider({ children }) {
     }
   }, [state.currentCurrency]);
 
+  const calculatedRates = useMemo(() => {
+    if (!state.rates[state.currentCurrency]) return [];
+
+    const currencies = getCurrencies();
+    const currenciesSymbols = currencies.map((currency) => currency.symbol);
+
+    const filteredRates = state.rates[state.currentCurrency].filter((rate) => {
+      const pairSymbol = rate.pair.replace(state.currentCurrency, '');
+
+      const { currency: pairCurrency } = rate;
+
+      if (
+        currenciesSymbols.includes(pairSymbol) &&
+        pairCurrency == state.currentCurrency
+      ) {
+        return rate;
+      }
+    });
+
+    const normalizedRates = filteredRates.map((rate) => {
+      const pairSymbol = rate.pair.replace(state.currentCurrency, '');
+
+      return {
+        rate: calculateMidpointRate(rate.ask, rate.bid),
+        pairSymbol,
+      };
+    });
+
+    return normalizedRates;
+  }, [state.rates, state.currentCurrency]);
+
   return (
-    <ExchangeContext.Provider value={{ state, dispatch }}>
+    <ExchangeContext.Provider
+      value={{
+        calculatedRates,
+        currentCurrency: state.currentCurrency,
+        dispatch,
+      }}
+    >
       {children}
     </ExchangeContext.Provider>
   );

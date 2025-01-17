@@ -1,6 +1,6 @@
 export const getCurrencies = () => {
   const currencies = [
-    { label: 'US Dollar', symbol: 'USD', default: true },
+    { label: 'US Dollar', symbol: 'USD' },
     { label: 'Euro', symbol: 'EUR' },
     { label: 'British Pound', symbol: 'GBP' },
     { label: 'Japanese Yen', symbol: 'JPY' },
@@ -8,13 +8,17 @@ export const getCurrencies = () => {
     { label: 'Canadian Dollar', symbol: 'CAD' },
     { label: 'Swiss Franc', symbol: 'CHF' },
     { label: 'Chinese Yuan', symbol: 'CNY' },
-    { label: 'Swedish Krona', symbol: 'SEK' },
     { label: 'New Zealand Dollar', symbol: 'NZD' },
     { label: 'Indian Rupee', symbol: 'INR' },
     { label: 'Brazilian Real', symbol: 'BRL' },
     { label: 'South African Rand', symbol: 'ZAR' },
     { label: 'Russian Ruble', symbol: 'RUB' },
-  ];
+    { label: 'Singapore Dollar', symbol: 'SGD' },
+    { label: 'Mexican Peso', symbol: 'MXN' },
+    { label: 'South Korean Won', symbol: 'KRW' },
+    { label: 'Turkish Lira', symbol: 'TRY' },
+    { label: 'United Arab Emirates Dirham', symbol: 'AED' }
+];
 
   return currencies;
 };
@@ -33,3 +37,5 @@ export const validateNumberInput = (value) => {
 
   return sanitizedValue;
 };
+
+export const calculateMidpointRate = (ask, bid) => (parseFloat(ask) + parseFloat(bid)) / 2;

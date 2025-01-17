@@ -11,12 +11,8 @@ import RatesList from 'components/RatesList';
 
 export default function ExchangePage() {
   //Review this, think in react 19 can be simplified
-  const { state, dispatch } = useContext(ExchangeContext) || {};
-
-  const { rates, currentCurrency } = state || {};
-
-  console.log('rates')
-  console.log(rates)
+  const { currentCurrency, calculatedRates, dispatch } =
+    useContext(ExchangeContext) || {};
 
   const [currentAmount, setCurrentAmount] = useState(0);
 
@@ -35,7 +31,7 @@ export default function ExchangePage() {
           />
         </div>
 
-        <RatesList/>
+        <RatesList rates={calculatedRates}/>
       </div>
     </main>
   );
